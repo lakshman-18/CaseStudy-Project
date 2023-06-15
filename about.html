@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>OS</title>
+</head>
+
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="./index.html">OS LAB</a>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-window-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index1.html">HOME</a></li>
+                    <li><a href="docs.html">ALGO</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+
+                </ul>
+            </div>
+            <i class="fas fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+        <h1>About us</h1>
+    </section>
+
+    <div class="container_1">
+        <div class="header_1">
+            <h1>Our Team</h1>
+        </div>
+
+        <div class="sub_container" data-aos="zoom-in-up">
+
+            <div class="teams">
+                <img src="/images/profile_1.SVG"  alt="">
+                <div class="name">B LAKSHMAN SAI</div>
+                <div class="desig">CB.EN.U4CSE21234</div>
+                <div class="about"></div>
+
+            </div>
+
+            <div class="teams">
+                <img src="/images/profile_2.SVG"  alt="">
+                <div class="name">K RISHITH PRANAV KUMAR</div>
+                <div class="desig">CB.EN.U4CSE21232</div>
+ 
+            </div>
+
+            <div class="teams">
+                <img src="/images/profile_1.SVG" alt="">
+                <div class="name">B LOKESH CHANDRA</div>
+                <div class="desig">CB.EN.U4CSE21211</div>
+ 
+            </div>
+        </div>
+        </div>
+    </div>
+
+    
+   
+    <section class="footer">
+        <P>THANK YOU</P>
+    </section>
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 200, // offset (in px) from the original trigger point
+        duration: 600
+      });
+    </script>
+</body>
+
+</html>

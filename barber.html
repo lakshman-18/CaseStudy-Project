@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sleeping Barber Problem</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .barber {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      margin-right: 20px;
+      transition: background-color 0.5s;
+    }
+
+    .barber.haircutting {
+      background-color: red;
+    }
+
+    .waiting-room {
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    .seats {
+      display: block;
+      width: 40px;
+      height: 10px;
+      background-color: #ccc;
+      margin-bottom: 10px;
+      transition: margin-bottom 0.5s;
+    }
+
+    .customers {
+      margin-top: 20px;
+      transition: transform 0.5s;
+    }
+
+    .customers.enter {
+      transform: scale(1.1);
+    }
+
+    .customers.leave {
+      transform: translateX(200%);
+    }
+
+    .status {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="barber">
+      <span class="status">Barber: Idle</span>
+    </div>
+    <div class="waiting-room">
+      <span class="seats"></span>
+      <div class="customers">
+        <span class="status">Customers: 0</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const seatsElement = document.querySelector('.seats');
+    const barberElement = document.querySelector('.barber');
+    const customersElement = document.querySelector('.customers');
+    const barberStatusElement = document.querySelector('.barber .status');
+    const customersStatusElement = document.querySelector('.customers .status');
+
+    const N = 5; // Number of available seats
+    let freeSeats = N;
+    let customersCount = 0;
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function animateHaircut() {
+      barberElement.classList.add('haircutting');
+      await sleep(1000); // Haircut time
+      barberElement.classList.remove('haircutting');
+    }
+
+    async function barber() {
+      while (true) {
+        if (customersCount === 0) {
+          barberStatusElement.textContent = 'Barber: Idle';
+        }
+
+        await sleep(2000); // Barber's rest time
+      }
+    }
+
+    async function customer() {
+      while (true) {
+        await sleep(Math.random() * 5000); // Customer arrival time
+
+        if (freeSeats > 0) {
+          freeSeats--;
+          customersCount++;
+          seatsElement.style.marginBottom = `${10 * (N - freeSeats)}px`;
+          customersStatusElement.textContent = `Customers: ${customersCount}`;
+
+          barberStatusElement.textContent = 'Barber: Busy';
+          customersElement.classList.add('enter');
+          await sleep(500); // Delay before haircut animation
+          await animateHaircut();
+
+          customersElement.classList.remove('enter');
+          customersElement.classList.add('leave');
+          await sleep(500); // Delay after haircut animation
+          customersElement.classList.remove('leave');
+
+          customersCount--;
+          freeSeats++;
+          seatsElement.style.marginBottom = `${10 * (N - freeSeats)}px`;
+          customersStatusElement.textContent = `Customers: ${customersCount}`;
+        }
+      }
+    }
+
+    barber();
+    customer();
+  </script>
+</body>
+</html>

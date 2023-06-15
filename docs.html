@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./docs.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>OS </title>
+</head>
+<style>
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .row {
+        padding: 10%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        padding-left: 10%;
+        padding-top: 40px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-start: 1;
+        grid-gap: 25px;
+        margin: auto;
+      }
+      
+      /* -------- Button Dark / Light ------- */
+      figure {
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .toggle {
+        display: flex;
+        position: relative;
+        width: 7.5rem;
+        height: 2.5rem;
+        background: white;
+        border-radius: 6px;
+        align-self: center;
+        user-select: none;
+        margin: 2rem;
+        box-shadow: 0 15px 20px -10px #02050b;
+        transition: 0.2s ease-in;
+      }
+      .darkmode .toggle {
+        box-shadow: 0 15px 20px -10px #181818;
+        transition: 0.2s ease-in;
+      }
+      
+      .toggle:after,
+      .toggle:before {
+        flex: 1;
+        text-align: center;
+        line-height: 2.5rem;
+      }
+      .toggle:after {
+        content: "Light";
+      }
+      .toggle:before {
+        content: "Dark";
+      }
+      
+      input {
+        display: none;
+      }
+      
+      label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        perspective: 1000;
+        cursor: pointer;
+      }
+      .card {
+        position: relative;
+        background: #599cff;
+        border-radius: 6px;
+        transition: 0.4s;
+        width: 50%;
+        height: 2.5rem;
+        pointer-events: none;
+      }
+      
+      input:checked + label .card {
+        background: #272727;
+        border-radius: 6px;
+      }
+      
+      .slide .card {
+        transform: translate(0);
+      }
+      .slide input:checked + label .card {
+        transform: translateX(3.75rem);
+      }
+      /* -------- End button Dark / Light ------- */
+      
+      
+      .cards {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        min-width: 400px;
+        height:200px;
+        transition: 0.2s ease !important;
+        box-shadow: 10px 15px 20px -10px #030409;
+        padding-bottom: 30%;
+        padding-top: 15%;
+        padding-left: 40px;
+      }
+      .darkmode .cards {
+        box-shadow: 0 25px 15px -15px #242424;
+      }
+      .darkmode .cards:not(.not) {
+        background: #222;
+        transition: 0.3s ease-in;
+        box-shadow: 0 25px 15px -15px #242424;
+      }
+      
+      .cards span {
+        padding: 0 1rem;
+        transition: 0.4s ease-in;
+      }
+      
+      .darkmode .cards:not(.not) span {
+        color: white;
+      }
+      
+      @media (max-width: 600px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 380px) {
+        .grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    margin: 0 auto;
+    max-width: 960px;
+  }
+  .grid-container1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+  
+  /* Card styles */
+  .card {
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+  }
+  
+  .card h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center; /* Center card names */
+  }
+  
+  .card p {
+    font-size: 16px;
+    margin: 0;
+  }
+ /* Button styles */
+ .card-button {
+  display: block;
+  background-color: #4CAF50;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.card:hover{
+    cursor: pointer;
+    box-shadow: 0 0 20px 0px rgba(13, 14, 13, 0.644);
+    transition: 0.5s;
+}
+
+.card-button:hover {
+  background-color: #3e8e41;
+}
+
+</style>
+
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="index1.html">OS</a>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-window-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index1.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+
+                </ul>
+            </div>
+            <i class="fas fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+        <h1>Scheduling Algorithms</h1>
+
+    </section>
+
+
+
+    <section class="container_docs" >
+        <h1>What is CPU Scheduling?</h1>
+        <p>CPU Scheduling is a process of determining which process will own CPU for execution while another process is
+            on hold. The main task of CPU scheduling is to make sure that whenever the CPU remains idle, the OS at least
+            select one of the processes available in the ready queue for execution. The selection process will be
+            carried out by the CPU scheduler. It selects one of the processes in memory that are ready for execution.
+        </p>
+    </section>
+    <section class="container_docs" >
+        <h1>GHOST BSD Operating System</h1>
+        <p>GhostBSD is a desktop operating system based on FreeBSD. It uses a modified version of the FreeBSD kernel and includes a variety of open-source software packages. GhostBSD uses the ULE scheduler, which is a priority-based scheduler that supports deadline scheduling.
+            In ULE scheduler, each process is assigned a priority value based on its dynamic behavior. The priority value ranges from 0 to 255, where 0 is the highest priority and 255 is the lowest priority. The ULE scheduler uses priority values to decide which process to run next
+        </p>
+    </section>
+    <section class="container_docs" >
+        <h1>WHY Deadline Scheduling</h1>
+        <p>In addition to priority values, the ULE scheduler also supports deadline scheduling. In deadline scheduling, each process is assigned a deadline by which it must complete its execution. If a process misses its deadline, it is penalized by lowering its priority value. This ensures that processes that are close to missing their deadlines are given higher priority than processes that have more time to complete.
+<br><br>
+            GhostBSD uses the ULE scheduler with deadline scheduling to ensure that critical tasks are completed on time. For example, if a process is responsible for handling user input, it may be assigned a deadline of a few milliseconds to ensure that it responds quickly to user actions. If the process misses its deadline, its priority value is lowered, and it may be preempted by a higher-priority process, ensuring that the system remains responsive.
+        </p>
+    </section>
+
+
+
+
+    <section class="container_docs special" data-aos="zoom-in-up">
+        <h1>Important CPU scheduling Terminologies</h1>
+        <!-- <p>A typical process involves both I/O time and CPU time. In a uni programming system like MS-DOS, time spent waiting for I/O is wasted and CPU is free during this time. In multi programming systems, one process can use CPU while another is waiting for I/O. This is possible only with process scheduling.<br><br> -->
+        <li><strong>Burst Time/Execution Time:</strong> It is a time required by the process to complete execution. It
+            is also called running time.</li>
+        <li><strong>Arrival Time:</strong> when a process enters in a ready state</li>
+        <li><strong>Finish Time:</strong> when process complete and exit from a system</li>
+        <li><strong>Multiprogramming:</strong> A number of programs which can be present in memory at the same time.
+        </li>
+        <li><strong>Jobs:</strong> It is a type of program without any kind of user interaction.</li>
+        <li><strong>User:</strong> It is a kind of program having user interaction.</li>
+        <li><strong>Process:</strong> It is the reference that is used for both job and user.</li>
+        <li><strong>CPU/IO burst cycle:</strong> Characterizes process execution, which alternates between CPU and I/O
+            activity. CPU times are shorter than the time of I/O.</li>
+
+        </p>
+    </section>
+
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>Types of CPU scheduling Algorithm</h1>
+        <p>There are mainly six types of process scheduling algorithm</p>
+        <li>First Come First Serve (FCFS)</li>
+        <li>Shortest-Job-First (SJF) Scheduling</li>
+        <li>Shortest Remaining Time</li>
+        <li>Priority Scheduling</li>
+        <li>Round Robin Scheduling</li>
+        <li>Multilevel Queue Scheduling</li>
+        <br>
+    </section>
+
+    <h1 style="padding-left: 10%; padding-top:10%;">Scheduling Algorithms</h1>
+    <div class="row">
+        <div class="grid">
+          <div class="cards">
+            <h4 >Deadline Scheduling</h4>
+            <button class="btn_1" onclick="gotoSimulator();">RUN</button>
+          </div>
+          <div class="cards">
+            <h4>SJF Scheduling</h4>
+            <button class="btn_1" onclick="gotoSimulator();">RUN</button>
+          </div>
+          <div class="cards not">
+            <h4>Round Robin Scheduling</h4>
+            <button class="btn_1" onclick="gotoSimulator();">RUN</button>
+          </div>
+          <div class="cards">
+            <h4>SRTF Scheduling</h4>
+            <button class="btn_1" onclick="gotoSimulator();">RUN</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="grid-container1">
+
+        <div  style="left:10%" class="grid-child purple">
+          <h1 style="padding-left: 10%; padding-top:10%;    margin-left: 100px;">Bankers  Algorithm</h1>
+          <div class="row">
+              <div class="grid" style="margin-left: 100px;">
+                <div class="cards">
+                  <h4>Banker's algorithm</h4>
+                  <button class="btn_1" onclick="gotoSimulator1();">RUN</button>
+                </div>
+      
+              </div>
+          </div>
+        </div>
+    
+        <div class="grid-child green">
+          <h1 style="padding-left: 10%; top:-20px; padding-top:10%;">Disk Scheduling</h1>
+          <div class="row">
+              <div class="grid">
+                <div class="cards">
+                  <h4>Disk Scheduling Algo</h4>
+                  <button class="btn_1" onclick="gotoSimulator2();">RUN</button>
+                </div>
+      
+              </div>
+          </div>
+      
+        </div>
+      
+    </div>
+    
+    <div class="grid-container1">
+
+      <div  style="left:10%" class="grid-child purple">
+        <h1 style="padding-left: 10%; padding-top:10%;    margin-left: 100px;">Sleeping Barber </h1>
+        <div class="row">
+            <div class="grid" style="margin-left: 100px;">
+              <div class="cards">
+                <h4>Sleeping Barber</h4>
+                <button class="btn_1" onclick="gotoSimulator3();">RUN</button>
+              </div>
+    
+            </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="grid-container1">
+
+    <div  style="left:10%" class="grid-child purple">
+      <h1 style="padding-left: 10%; padding-top:10%;    margin-left: 100px;">Process Synchronisation</h1>
+      <div class="row">
+          <div class="grid" style="margin-left: 100px;">
+            <div class="cards">
+              <h4>Music Problem Statment</h4>
+              <button class="btn_1" onclick="gotoSimulator4();">RUN</button>
+            </div>
+  
+          </div>
+      </div>
+    </div>
+
+    <div class="grid-child green">
+      <h1 style="padding-left: 10%;  padding-top:10%;"></h1>
+      <div class="row" style="margin-top: 50px;">
+          <div class="grid">
+            <div class="cards">
+              <h4>Solution</h4>
+              <button class="btn_1" onclick="gotoSimulator5();">RUN</button>
+            </div>
+  
+          </div>
+      </div>
+  
+    </div>
+  
+</div>
+
+    
+     
+    <section class="footer">
+        <p>thank you 🤟 </p>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+
+        function gotoSimulator(){
+            location.href = ("./backend/ganttcharts.html");
+        }
+        function gotoSimulator1(){
+            location.href = ("./backend/advanceClaim.html");
+        }
+        function gotoSimulator2(){
+          location.href = ("/Simulate.html");
+      }
+      function gotoSimulator3(){
+        location.href = ("/barber.html");
+    }
+    function gotoSimulator4(){
+      location.href = ("/test2.html");
+  }
+  function gotoSimulator5(){
+    location.href = ("/music.html");
+}
+    </script>
+
+
+    <!-- For the animation -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 200, // offset (in px) from the original trigger point
+        duration: 800
+      });
+      const cards = document.querySelectorAll('.card');
+
+cards.forEach((card) => {
+  card.addEventListener('click', () => {
+    if (!card.hasAttribute('active')) {
+      updateActiveCard(card);
+    }
+  });
+});
+
+function updateActiveCard(activeCard) {
+  cards.forEach((card) => {
+    if (card === activeCard) {
+      card.setAttribute('active', '');
+    } else {
+      card.removeAttribute('active');
+    }
+  })
+}
+    </script>
+</body>
+
+</html>
